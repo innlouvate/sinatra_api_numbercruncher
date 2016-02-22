@@ -2,6 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
 require_relative 'number_cruncher.rb'
+require_relative 'app.rb'
 
 include Rack::Test::Methods
 
@@ -12,7 +13,7 @@ end
 describe "Number Cruncher" do
 
   it "should return the factors of 6" do
-    6.factors.must_equal [1,2,3,6]
+    assert_equal [1,2,3,6], 6.factors
   end
 
   it "should say that 2 is prime" do
@@ -25,7 +26,7 @@ describe "Number Cruncher" do
 
   it "should return json" do
     get '/6'
-    last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
+    last_response.headers['Content-Type'].must_equal 'application/json'
   end
 
   it "should return the correct info about 6 as json" do

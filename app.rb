@@ -1,10 +1,9 @@
 require 'sinatra/base'
+require 'sinatra'
+require 'json'
 
 class API < Sinatra::Base
-  get '/' do
-    'Hello API!'
-  end
-
+  
   get '/:number' do
     content_type :json
     number = params[:number].to_i
